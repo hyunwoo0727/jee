@@ -1,4 +1,4 @@
-package bank;
+package grade;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,43 +11,38 @@ import global.Constants;
 /**
  * @date   :2016. 7. 1.
  * @author :HyunWoo Lee
- * @file   :BankDao.java
+ * @file   :GradeDao.java
  * @story  :
 */
 
-public class BankDao {
+public class GradeDAO {
 	public static void main(String[] args) {
 		Connection conn = null;
 		Statement stmt = null;
-		ResultSet rs = null;
-		int updateResult = 0;	
-		String sql = "create table account2(accountNo int primary key,"
+		ResultSet rs= null;
+		int updateResult = 1;
+		String sql = "create table grade("
 				+ "name varchar2(20),"
-				+ "id varchar2(20),"
-				+ "pw varchar2(20),"
-				+ "money int"
+				+ "kor number(3),"
+				+ "eng number(3),"
+				+ "math number(3)"
 				+ ")";
-		String sqlDrop = "drop table account";
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
-			stmt = conn.createStatement();
-			updateResult = stmt.executeUpdate(sql);
-			System.out.println(updateResult+"ㅋㅋ");
-		}catch (Exception e) {
+		conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+		stmt = conn.createStatement();
+		updateResult = stmt.executeUpdate(sql);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			try {
 				stmt.close();
 				conn.close();
-				System.out.println("DB다녀온 결과 : " + (updateResult==0 ? "성공":"실패"));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
-		System.out.println(updateResult);
 	}
 }

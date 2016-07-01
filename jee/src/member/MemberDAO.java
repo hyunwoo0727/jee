@@ -14,21 +14,16 @@ import global.Constants;
  * @story  :
 */
 
-public class MemberDao {
-	public static void main(String[] args) {
-		Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		String sql = "create table member("
-				+ "id varchar2(20),"
-				+ "pw varchar2(20),"
-				+ "name varchar2(20),"
-				+ "gender varchar2(2),"
-				+ "regDate date,"
-				+ "ssn varchar2(8),"
-				+ "age number(3)"
-				+ ")";
-		String sqlDrop = "drop table member";
+public class MemberDAO {
+	private Connection conn;
+	private Statement stmt;
+	private ResultSet rs;
+	private static MemberDAO instance = new MemberDAO();
+	
+	private MemberDAO() {
+		
+	}
+	public int exeUpdate(String sql){
 		int updateResult = 0;
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
@@ -42,11 +37,17 @@ public class MemberDao {
 			try {
 				stmt.close();
 				conn.close();
-				System.out.println("DB다녀온 결과 : " + (updateResult==0 ? "성공":"실패"));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		return updateResult;
+	}
+	public void exeQuery(String sql){
+		
+	}
+	public static MemberDAO getInstance() {
+		return instance;
 	}
 }

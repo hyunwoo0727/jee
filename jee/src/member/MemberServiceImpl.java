@@ -1,29 +1,44 @@
 package member;
 
 public class MemberServiceImpl implements MemberService{
-	MemberBean stuBean;
+	MemberBean memberBean;
+	MemberDAO dao;
+	private static MemberServiceImpl instance = new MemberServiceImpl();
+	
+	private MemberServiceImpl() {
+		dao =  MemberDAO.getInstance();
+	}
 	
 	@Override
-	public void registStudent(String name, String id, String pw, String ssn) {
-		stuBean = new MemberBean(name, id, pw, ssn);
-	}
-
-	@Override
-	public String findStudent() {
-		return stuBean.toString();
-	}
-
-	@Override
-	public void updateStudent(String pw) {
-		stuBean.setPw(pw);
-	}
-	@Override
-	public void deleteStudent() {
-		stuBean = null;
+	public String regist(MemberBean mBean) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("insert into member(id,pw,name,regDate,ssn) ");
+		sb.append("values('"
+				+ mBean.getId()
+				+"','"+ mBean.getPw()
+				+ "','" + mBean.getName()
+				+ "','" + mBean.getRegDate()
+				+ "','" + mBean.getSsn()
+				+ "')");
+		return dao.exeUpdate(sb.toString())!=0?"성공":"실패";
 	}
 	@Override
-	public boolean checkPassword(String pw2){
-		return stuBean.getPw().equals(pw2) ? true : false;
+	public String find() {
+		return memberBean.toString();
 	}
-	
+	@Override
+	public void update(MemberBean mBean) {
+		memberBean.setPw(mBean.getPw());
+	}
+	@Override
+	public void delete() {
+		memberBean = null;
+	}
+	@Override
+	public boolean checkPassword(MemberBean mBean){
+		return memberBean.getPw().equals(mBean.getPw()) ? true : false;
+	}
+	public static MemberServiceImpl getInstance() {
+		return instance;
+	}
 }

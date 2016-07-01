@@ -6,8 +6,6 @@ package member;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import global.Constants;
-
 /**
  * @date   : 2016. 6. 16.
  * @author : HyunWoo Lee
@@ -25,33 +23,6 @@ public class MemberBean {
 	private int    age;
 	
 	public MemberBean() {
-	}
-	
-	public MemberBean(String name,String id,String pw,String ssn){
-		this.name = name;
-		this.id = id;
-		this.pw = pw;
-		this.ssn = ssn;
-		
-		int sCode = Integer.parseInt(ssn.split("-")[1]);
-		this.gender = (sCode+10)%2==0 ? "여" : "남";
-		this.regDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date(System.currentTimeMillis()));
-		
-		int nowYear = Integer.parseInt(regDate.substring(0,4));
-		int birthYear = Integer.parseInt(ssn.substring(0, 2));
-		
-		switch (sCode) {
-			case 1:case 2:case 5:case 6:
-				this.age = nowYear - (1900+birthYear)+1;
-				break;
-			case 9:case 0:
-				this.age = nowYear - (1800+birthYear)+1;
-				break;
-			default:
-				this.age = nowYear - (2000+birthYear)+1;
-				break;
-		}
-		
 	}
 	public void setId(String id){
 		this.id = id;
@@ -75,21 +46,43 @@ public class MemberBean {
 	public String getSsn() {
 		return ssn;
 	}
-	public int getAge() {
+	public int getage() {
 		return age;
 	}
 	public String getName() {
 		return name;
 	}
-
-	@Override
-	public String toString() {
-		return Constants.SCHOOL_NAME + "StudentBean [id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender + ", regDate=" + regDate
-				+ ", ssn=" + ssn + ", age=" + age + "]";
+	
+	public void setSsn(String ssn) {
+		int sCode = Integer.parseInt(ssn.split("-")[1]);
+		this.gender = (sCode+10)%2==0 ? "여" : "남";
+		int nowYear = Integer.parseInt(regDate.substring(0,4));
+		int ageYear = Integer.parseInt(ssn.substring(0, 2));
+		switch (sCode) {
+			case 1:case 2:case 5:case 6:
+				this.age = nowYear - (1900+ageYear)+1;
+				break;
+			case 9:case 0:
+				this.age = nowYear - (1800+ageYear)+1;
+				break;
+			default:
+				this.age = nowYear - (2000+ageYear)+1;
+				break;
+		}
+		this.ssn = ssn;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	public void setRegDate() {
+		this.regDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date(System.currentTimeMillis()));
+	}
+
+	@Override
+	public String toString() {
+		return "MemberBean [id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender + ", regDate=" + regDate
+				+ ", ssn=" + ssn + ", age=" + age + "]";
+	}
 }

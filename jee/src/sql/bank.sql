@@ -8,6 +8,6 @@ create table account(
 
 SELECT * FROM ACCOUNT;
 
-drop table account;
+drop table account2;
 
 
