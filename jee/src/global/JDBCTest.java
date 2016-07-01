@@ -23,7 +23,9 @@ public class JDBCTest {
 		
 		List<String> list = new ArrayList<String>();
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
+			Class.forName(Constants.ORACLE_DRIVER); 
+			// DriverManager는 어떤 드라이버가 올줄 모름.. 위에꺼 호출하면 생성된 드라이버가 매니저에 세팅됨
+			// 어디서? 스태틱 초기화 블록에서...
 			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);

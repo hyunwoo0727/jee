@@ -20,14 +20,14 @@ public class AccountBean {
 		private int    accountNo;
 	
 		public AccountBean() {
-			
+			this.accountNo = (int) (Math.random()*1000000+100001);
+			if(this.accountNo > 1000000){
+				this.accountNo -= 100000;
+			}
+			this.money = 0;
 		}
 		public AccountBean(String name,String id,String pw) {
-			int accountNo = (int) (Math.random()*1000000+100001);
-			if(accountNo > 1000000){
-				accountNo -= 100000;
-			}
-			this.accountNo = accountNo;
+			
 			this.money = 0;
 			this.id = id;
 			this.pw = pw;

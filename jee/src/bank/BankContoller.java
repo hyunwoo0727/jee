@@ -18,6 +18,7 @@ public class BankContoller {
 		BankService bsv = new BankServiceImpl();
 		AccountBean accountBean = null;
 		List<AccountBean>  list = null;
+		
 		while (true) {
 			switch (JOptionPane.showInputDialog("1.통장개설 2.입금 3.조회 4.출금 5.통장내역 6.계좌삭제 \n "
 					+ "============================================================================================\n"
