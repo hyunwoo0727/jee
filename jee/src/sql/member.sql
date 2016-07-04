@@ -25,3 +25,5 @@ delete from member where id='you';
 
 select * from member;
 
+select count(*) cnt from member
+

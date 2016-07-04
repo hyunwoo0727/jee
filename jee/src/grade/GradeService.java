@@ -1,9 +1,16 @@
 package grade;
 
+import java.util.List;
+
 public interface GradeService {
-	public String getGrade();
-	public int getTotal();
-	public int getAvg();
-	public void registStudent(String[] stuSpec);
-	public String getResult();
+	// 총 7가지 패턴 
+	// exeU
+	public int insert(GradeBean grade);
+	public int update(GradeBean grade);
+	public int delete(GradeBean grade);
+	// exeQ
+	public List<GradeBean> list();
+	public List<GradeBean> findByHakjum(String hakjum);
+	public GradeBean findBySeq(int seq);
+	public int count();
 }

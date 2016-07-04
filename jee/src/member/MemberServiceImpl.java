@@ -1,5 +1,7 @@
 package member;
 
+import java.util.List;
+
 public class MemberServiceImpl implements MemberService{
 	MemberBean memberBean;
 	MemberDAO dao;
@@ -11,28 +13,19 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public String regist(MemberBean mBean) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("insert into member(id,pw,name,regDate,ssn) ");
-		sb.append("values('"
-				+ mBean.getId()
-				+"','"+ mBean.getPw()
-				+ "','" + mBean.getName()
-				+ "','" + mBean.getRegDate()
-				+ "','" + mBean.getSsn()
-				+ "')");
-		return dao.exeUpdate(sb.toString())!=0?"성공":"실패";
+		return dao.insert(mBean)!=0?"성공":"실패";
 	}
 	@Override
 	public String find() {
 		return memberBean.toString();
 	}
 	@Override
-	public void update(MemberBean mBean) {
-		memberBean.setPw(mBean.getPw());
+	public String update(MemberBean mBean) {
+		return dao.updatePw(mBean)!=0? "변경 완료" : "ID/PW를 확인하세요" ;
 	}
 	@Override
-	public void delete() {
-		memberBean = null;
+	public String delete(String id) {
+		return dao.deleteMember(id)!=0?"삭제완료":"아이디를 확인하세요";
 	}
 	@Override
 	public boolean checkPassword(MemberBean mBean){
@@ -40,5 +33,27 @@ public class MemberServiceImpl implements MemberService{
 	}
 	public static MemberServiceImpl getInstance() {
 		return instance;
+	}
+	@Override
+	public int getCount() {
+		return dao.count();
+	}
+
+	@Override
+	public MemberBean findById(String id) {
+		// TODO Auto-generated method stub
+		return dao.findByPK(id);
+	}
+
+	@Override
+	public List<MemberBean> findByWord(String word) {
+		// TODO Auto-generated method stub
+		return dao.findByWord(word);
+	}
+
+	@Override
+	public List<MemberBean> list() {
+		// TODO Auto-generated method stub
+		return dao.list();
 	}
 }

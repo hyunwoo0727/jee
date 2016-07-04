@@ -12,7 +12,7 @@ import java.util.Date;
  * @file   : Student.java 
  * @story  : 학생클라스
 */
-public class MemberBean {
+public class MemberBean2 {
 	private String id;
 	private String pw;
 	private String name;
@@ -20,8 +20,12 @@ public class MemberBean {
 	private String regDate;
 	private String ssn;
 	private int    age;
+	private static MemberBean2 instance = new MemberBean2();
 	
-	public MemberBean() {
+	private MemberBean2() {
+	}
+	public static MemberBean2 getInstance(){
+		return instance;
 	}
 	public void setId(String id){
 		this.id = id;
@@ -82,6 +86,6 @@ public class MemberBean {
 	@Override
 	public String toString() {
 		return "MemberBean [id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender + ", regDate=" + regDate
-				+ ", ssn=" + ssn + ", age=" + age + "]\n";
+				+ ", ssn=" + ssn + ", age=" + age + "]";
 	}
 }

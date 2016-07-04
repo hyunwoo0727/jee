@@ -16,33 +16,15 @@ import global.Constants;
 */
 
 public class GradeDAO {
-	public static void main(String[] args) {
-		Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs= null;
-		int updateResult = 1;
-		String sql = "create table grade("
-				+ "name varchar2(20),"
-				+ "kor number(3),"
-				+ "eng number(3),"
-				+ "math number(3)"
-				+ ")";
-		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-		conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
-		stmt = conn.createStatement();
-		updateResult = stmt.executeUpdate(sql);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	private Connection conn = null;
+	private Statement stmt = null;
+	private ResultSet rs= null;
+	private static GradeDAO instance = new GradeDAO();
+	
+	private GradeDAO() {
 	}
+	public GradeDAO getInstance(){
+		return instance;
+	}
+	
 }

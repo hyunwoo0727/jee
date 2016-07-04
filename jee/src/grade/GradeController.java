@@ -15,14 +15,11 @@ import javax.swing.JOptionPane;
 public class GradeController {
 	
 	public static void main(String[] args) {
-		GradeService gdService = new GradeServiceImpl();
-		
+		GradeService gdService = GradeServiceImpl.getInstance();
 		while (true) {
-			switch (JOptionPane.showInputDialog("1.학점 0.종료")) {
+			switch (JOptionPane.showInputDialog("1.추가 2.수정 3.삭제 4.전체조회 5.학점조회 6.시퀀스조회 0.종료")) {
 			case "1":
-				String[] studentSpec = JOptionPane.showInputDialog("이름,국어점수,영어점수,수학점수").split(",");
-				gdService.registStudent(studentSpec);
-				JOptionPane.showMessageDialog(null, gdService.getResult());
+					
 				break;
 			case "0":
 				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?")==0){

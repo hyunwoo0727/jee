@@ -1,48 +1,56 @@
 package grade;
 
+import java.util.List;
+
 public class GradeServiceImpl implements GradeService{
-	GradeBean gradeBean;
-	int cnt;
-	@Override
-	public String getGrade() {
-		switch (getAvg()/10) {
-		case 10: case 9:
-			return "A";
-		case 8:
-			return "B";
-		case 7:
-			return "C";
-		case 6:
-			return "D";
-		default:
-			return "F";
-		}
+	private static GradeServiceImpl instance = new GradeServiceImpl();
+	
+	private GradeServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	public static GradeServiceImpl getInstance() {
+		return instance;
 	}
 	@Override
-	public int getTotal() {
-		return gradeBean.getKuk() + gradeBean.getEng() + gradeBean.getMath();
-	}
-	@Override
-	public int getAvg() {
-		return getTotal()/this.cnt;
-	}
-	@Override
-	public String getResult() {
+	public int insert(GradeBean grade) {
 		// TODO Auto-generated method stub
-		return gradeBean.toString() + " 총점 : " + getTotal() + " 평균 : " + getAvg() + " 결과 : " + getGrade();
+		return 0;
 	}
 
 	@Override
-	public void registStudent(String[] stuSpec) {
-		gradeBean = new GradeBean(stuSpec[0]);
-		gradeBean.setKuk(Integer.parseInt(stuSpec[1]));
-		gradeBean.setEng(Integer.parseInt(stuSpec[2]));
-		gradeBean.setMath(Integer.parseInt(stuSpec[3]));
-		this.cnt = stuSpec.length-1;
+	public int update(GradeBean grade) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	
-	
-	
-	
+
+	@Override
+	public int delete(GradeBean grade) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<GradeBean> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<GradeBean> findByHakjum(String hakjum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GradeBean findBySeq(int seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
