@@ -16,7 +16,7 @@ import global.Constants;
 */
 
 public class GradeDAO {
-	private Connection conn ;
+	private Connection conn;
 	private Statement stmt;
 	private ResultSet rs;
 	private static GradeDAO instance = new GradeDAO();
@@ -175,6 +175,4 @@ public class GradeDAO {
 		}
 		return cnt;
 	}
-	
-	
 }

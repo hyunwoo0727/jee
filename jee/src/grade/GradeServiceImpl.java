@@ -2,6 +2,8 @@ package grade;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class GradeServiceImpl implements GradeService{
 	GradeDAO dao = GradeDAO.getInstance();
 	private static GradeServiceImpl instance = new GradeServiceImpl();
@@ -19,8 +21,9 @@ public class GradeServiceImpl implements GradeService{
 		return dao.insert(grade)!=0?"입력 완료":"입력 실패";
 	}
 	@Override
-	public String update(String[] uData) {
+	public String update(String sData) {
 		// TODO Auto-generated method stub
+		String[] uData = sData.split(",");
 		return dao.update(uData) != 0 ? "수정성공":"수정실패";
 	}
 	@Override
@@ -70,14 +73,15 @@ public class GradeServiceImpl implements GradeService{
 		}
 		return grade;
 	}
-	public boolean numberCheck(String[] scores){
-		boolean isValidRange = true;
+	public String numberCheck(String[] scores){
 		int i=0;
-		for (; i < scores.length-1; i++) {
+		for (; i < scores.length-2; i++) {
 			if(Integer.parseInt(scores[i])<0 ||  Integer.parseInt(scores[i]) > 100){
-				isValidRange = false;
+				return "0에서 100사이 점수만 입력 가능";
 			}
 		}
-		return isValidRange;
+		GradeBean gdBean = new GradeBean(scores[5], scores[4], scores[0], scores[1], scores[2], scores[3]);
+		return this.insert(gdBean);
+		
 	}
 }
