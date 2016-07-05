@@ -70,5 +70,14 @@ public class GradeServiceImpl implements GradeService{
 		}
 		return grade;
 	}
-	
+	public boolean numberCheck(String[] scores){
+		boolean isValidRange = true;
+		int i=0;
+		for (; i < scores.length-1; i++) {
+			if(Integer.parseInt(scores[i])<0 ||  Integer.parseInt(scores[i]) > 100){
+				isValidRange = false;
+			}
+		}
+		return isValidRange;
+	}
 }

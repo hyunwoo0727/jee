@@ -14,4 +14,5 @@ public interface GradeService {
 	public GradeBean findBySeq(String seq);
 	public List<GradeBean> findSeqById(String id);
 	public int count(String examDate);
+	public boolean numberCheck(String[] scores);
 }

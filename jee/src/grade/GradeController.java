@@ -34,8 +34,12 @@ public class GradeController {
 					break;
 				}
 				exam = JOptionPane.showInputDialog("JAVA,SQL,HTML,JAVASCRIPT,시험일(2016-05) 입력").split(",");
-				GradeBean gdBean = new GradeBean(id, exam[4], exam[0], exam[1], exam[2], exam[3]);
-				JOptionPane.showMessageDialog(null, gdService.insert(gdBean));
+				if(gdService.numberCheck(exam)){
+					GradeBean gdBean = new GradeBean(id, exam[4], exam[0], exam[1], exam[2], exam[3]);
+					JOptionPane.showMessageDialog(null, gdService.insert(gdBean));
+				}else{
+					JOptionPane.showMessageDialog(null, "0에서 100점 사이만 입력가능합니다");
+				}
 				break;
 			case "2": // 바꾸려는 과목 , 점수 , seq 필요 
 				exam = JOptionPane.showInputDialog("바꾸려는 과목명,점수,seq번호 입력").split(",");
