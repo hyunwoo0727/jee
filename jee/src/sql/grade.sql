@@ -44,3 +44,28 @@ select * from grade;
 -- update
 UPDATE GRADE SET java = 30 WHERE SEQ = 1001; 
 -- delete
+
+
+
+
+
+
+
+
+
+
+
+select * from grade_member;
+
+drop view grade_view;
+
+create view grade_view
+as select * from grade;
+
+
+----join---------
+create view grade_member as
+select * from member join grade using(id)
+
+select * from grade_view;
+

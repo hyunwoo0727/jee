@@ -9,6 +9,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import bank2.AccountServiceImp;
+
 /**
  * @date   :2016. 7. 6.
  * @author :HyunWoo Lee
@@ -35,7 +37,7 @@ public class GradeUI extends JFrame{
 		wrapper_panel = new JPanel();
 		wrapper_panel.setSize(690, 300);
 		flow_panel = new JPanel(new FlowLayout());
-		wrapper_panel.add(new JList(GradeServiceImpl.getInstance().list().toArray()));
+		wrapper_panel.add(new JList(AccountServiceImp.getInstance().list().toArray()));
 		JScrollPane jsp = new JScrollPane(wrapper_panel);
 		this.add(jsp);
 	}
