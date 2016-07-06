@@ -30,7 +30,7 @@ public class BankDao {
 		String sqlDrop = "drop table account";
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = conn.createStatement();
 			updateResult = stmt.executeUpdate(sql);
 			System.out.println(updateResult+"ㅋㅋ");

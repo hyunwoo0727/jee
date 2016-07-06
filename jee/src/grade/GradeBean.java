@@ -76,6 +76,6 @@ public class GradeBean {
 	public String toString() {
 		return "성적표 [ No : " + seq + " 시험일 : " + examDate + ",ID : " + id + ", 학점 : " + grade + "\n  "
 				+ "	JAVA : " + java + ", SQL : " + sql
-				+ ", HTML5 : " + html + ", JAVASCRIPT : " + javascript + " ]\n";
+				+ ", HTML5 : " + html + ", JAVASCRIPT : " + javascript + " ]";
 	}
 }

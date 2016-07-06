@@ -59,7 +59,7 @@ public class MemberDAO {
 		int updateResult = 0;
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = conn.createStatement();
 			updateResult = stmt.executeUpdate(sql);
 		} catch (Exception e) {
@@ -81,7 +81,7 @@ public class MemberDAO {
 		sb.append("SELECT * FROM MEMBER WHERE ID='"+pk+"'");
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sb.toString());
 			if(rs.next()){
@@ -112,7 +112,7 @@ public class MemberDAO {
 		String sql = "select * from member";
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()){
@@ -145,7 +145,7 @@ public class MemberDAO {
 		String sql = "SELECT * FROM MEMBER WHERE NAME='" + name +"'";
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()){
@@ -177,7 +177,7 @@ public class MemberDAO {
 		int result = 0;
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if(rs.next()){

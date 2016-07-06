@@ -41,5 +41,6 @@ select * from grade;
 -- read findByPK
 -- read finByID
 -- read count
--- update 
+-- update
+UPDATE GRADE SET java = 30 WHERE SEQ = 1001; 
 -- delete

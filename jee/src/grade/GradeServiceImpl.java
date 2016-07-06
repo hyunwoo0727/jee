@@ -21,12 +21,6 @@ public class GradeServiceImpl implements GradeService{
 		return dao.insert(grade)!=0?"입력 완료":"입력 실패";
 	}
 	@Override
-	public String update(String sData) {
-		// TODO Auto-generated method stub
-		String[] uData = sData.split(",");
-		return dao.update(uData) != 0 ? "수정성공":"수정실패";
-	}
-	@Override
 	public String delete(String seq) {
 		// TODO Auto-generated method stub
 		return dao.delete(seq)!=0?"삭제 성공":"삭제 실패 시퀀스를 확인바랍니다";
@@ -36,16 +30,7 @@ public class GradeServiceImpl implements GradeService{
 		// TODO Auto-generated method stub
 		return dao.list();
 	}
-	@Override
-	public GradeBean findBySeq(String seq) {
-		// TODO Auto-generated method stub
-		return dao.findBySeq(seq);
-	}
-	@Override
-	public List<GradeBean> findSeqById(String id) {
-		// TODO Auto-generated method stub
-		return dao.findSeqById(id);
-	}
+
 	@Override
 	public int count(String examDate) {
 		// TODO Auto-generated method stub
@@ -84,4 +69,19 @@ public class GradeServiceImpl implements GradeService{
 		return this.insert(gdBean);
 		
 	}
+	@Override
+	public GradeBean findBySeq(String seq) {
+		return dao.findBySeq(seq);
+	}
+	@Override
+	public List<GradeBean> findById(String id) {
+		// TODO Auto-generated method stub
+		return dao.findById(id);
+	}
+	@Override
+	public String update(String sData) {
+		// TODO Auto-generated method stub
+		return dao.update(sData.split(","))!=0 ? "수정 완료" : "수정 실패";
+	}
+	
 }

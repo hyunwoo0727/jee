@@ -19,7 +19,7 @@ import member.MemberServiceImpl;
 */
 public class GradeController {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) {	
 		GradeService gdService = GradeServiceImpl.getInstance();
 		MemberService mService = MemberServiceImpl.getInstance();
 		String id = "";
@@ -41,7 +41,7 @@ public class GradeController {
 				JOptionPane.showMessageDialog(null, gdService.delete(JOptionPane.showInputDialog("삭제할 SEQ 번호 입력하세요")));
 				break;
 			case "4":
-				JOptionPane.showMessageDialog(null, gdService.list());
+				GradeUI ui = new GradeUI();
 				break;
 			case "5":
 				GradeBean showBean = gdService.findBySeq(JOptionPane.showInputDialog("조회할 SEQ 번호 입력"));
@@ -49,7 +49,7 @@ public class GradeController {
 				break;
 			case "6":
 				id = JOptionPane.showInputDialog("검색할 ID");
-				List<GradeBean> tempList = gdService.findSeqById(id);
+				List<GradeBean> tempList = gdService.findById(id);
 				JOptionPane.showMessageDialog(null,tempList.size()==0?"시험 내역이 없습니다":tempList);
 				break;
 			case "7":
