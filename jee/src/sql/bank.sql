@@ -21,3 +21,17 @@ select * from account join member using(id);
 select * from account_member;
 
 select * from member;
+
+------------------------------
+
+
+select
+           a.account_no as account_no,
+           a.money as money,
+           m.id as id,
+           m.pw as pw,
+           m.name as name,
+           m.reg_date as reg_date,
+           m.ssn as ssn
+          from member m , account a
+          where m.id = a.id
