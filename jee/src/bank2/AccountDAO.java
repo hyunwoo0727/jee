@@ -65,6 +65,7 @@ public class AccountDAO {
 				accBean.setId(rs.getString("ID"));
 				accBean.setMoney(rs.getInt("MONEY"));
 				accBean.setName(rs.getString("NAME"));
+				accBean.setPw(rs.getString("PW"));
 				return accBean;
 			}
 		} catch (Exception e) {
@@ -173,6 +174,20 @@ public class AccountDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, accNo);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int updateAccount(AccountMemberBean uptBean) {
+		int result = 0;
+		String sql = "UPDATE MEMBER SET PW=? WHERE ID=(SELECT ID FROM ACCOUNT WHERE ACCOUNTNO=?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, uptBean.getPw());
+			pstmt.setInt(2, uptBean.getAccountNo());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

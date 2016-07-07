@@ -52,9 +52,19 @@ public class AccountContoller {
 				JOptionPane.showMessageDialog(null, accService.withdraw(withBean));
 				break;
 			case "4":
-				String acc = JOptionPane.showInputDialog("수정할 계좌번호 입력");
-				String pw = JOptionPane.showInputDialog("비밀번호 입력");
-				String newPw = JOptionPane.showInputDialog("새로운 비밀번호");
+				String[] sData = JOptionPane.showInputDialog("계좌번호,현재 비밀번호 입력").split(",");
+				AccountMemberBean uptBean = accService.findByAccountNo(sData[0]);
+				if(uptBean==null){
+					JOptionPane.showMessageDialog(null, "없는 계좌입니다");
+					break;
+				}
+				
+				if(!uptBean.getPw().equals(sData[1])){
+					JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다");
+					break;
+				}
+				uptBean.setPw(JOptionPane.showInputDialog("바꿀 비밀 번호"));
+				JOptionPane.showMessageDialog(null,accService.updateAccount(uptBean));
 				break;
 			case "5":
 				JOptionPane.showMessageDialog(null, accService.closeAccount(JOptionPane.showInputDialog("계좌 번호 입력")));

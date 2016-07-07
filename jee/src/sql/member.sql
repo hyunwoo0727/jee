@@ -19,7 +19,7 @@ values('you','1','유관순','2014/07/01','010701-4');
 select * from member where id='you';
 
 
-update member set pw='999' where id='you';
+update member set pw='1324' where id='mingky10';
 
 delete from member where id='you';
 

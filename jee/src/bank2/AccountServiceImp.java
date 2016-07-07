@@ -3,7 +3,6 @@
  */
 package bank2;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AccountServiceImp implements AccountService{
@@ -58,5 +57,10 @@ public class AccountServiceImp implements AccountService{
 	@Override
 	public String closeAccount(String accNo) {
 		return dao.closeAccount(Integer.parseInt(accNo))!=0?"삭제 성공":"삭제 실패";
+	}
+	@Override
+	public String updateAccount(AccountMemberBean uptBean) {
+		// TODO Auto-generated method stub
+		return dao.updateAccount(uptBean)!=0?"변경 완료":"변경 실패";
 	}
 }
