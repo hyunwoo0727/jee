@@ -20,7 +20,7 @@ public class MyJPanel extends JPanel {
 	public MyJPanel(){
 		super(new GridLayout(1,0));
 		
-		List<GradeBean> list = service.list();
+//		List<GradeBean> list = service.list();
 		JTable table = new JTable();
 	}
 }

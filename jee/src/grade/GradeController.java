@@ -49,11 +49,11 @@ public class GradeController {
 				break;
 			case "6":
 				id = JOptionPane.showInputDialog("검색할 ID");
-				List<GradeBean> tempList = gdService.findById(id);
-				JOptionPane.showMessageDialog(null,tempList.size()==0?"시험 내역이 없습니다":tempList);
+//				List<GradeBean> tempList = gdService.findBy(id);
+//				JOptionPane.showMessageDialog(null,tempList.size()==0?"시험 내역이 없습니다":tempList);
 				break;
 			case "7":
-				JOptionPane.showMessageDialog(null, gdService.count(JOptionPane.showInputDialog("조회할 시험날짜 입력(2016-05)"))+"명");
+//				JOptionPane.showMessageDialog(null, gdService.count(JOptionPane.showInputDialog("조회할 시험날짜 입력(2016-05)"))+"명");
 				break;
 			case "0":
 				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?")==0){

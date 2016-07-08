@@ -3,7 +3,8 @@
  */
 package bank2;
 
-import java.util.List;
+
+import global.CommonService;
 
 /**
  * @date   : 2016. 6. 20.
@@ -11,7 +12,7 @@ import java.util.List;
  * @file   : AccountService.java 
  * @story  : 
 */
-public interface AccountService {
+public interface AccountService extends CommonService {
 
 	public String openAccount(String id);
 	// 1.개설
@@ -23,11 +24,11 @@ public interface AccountService {
 	// 7.조회(계좌번호)
 	// 8.조회(이름)
 	// 9.조회(전체통장수)
+	
+	
 	public String deposit(AccountMemberBean accBean);
 	public AccountMemberBean findByAccountNo(String accNo);
-	public List<AccountMemberBean> list();
 	public String withdraw(AccountMemberBean withBean);
-	public List<AccountMemberBean> findByName(String name);
 	public int count();
 	public String closeAccount(String accNo);
 	public String updateAccount(AccountMemberBean uptBean);

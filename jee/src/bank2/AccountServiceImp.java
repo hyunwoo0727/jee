@@ -3,14 +3,17 @@
  */
 package bank2;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AccountServiceImp implements AccountService{
-	
-	AccountDAO dao = AccountDAO.getInstance();
+	private AccountDAO dao = AccountDAO.getInstance();
+	private Map<?,?> map;
 	private static AccountServiceImp instance = new AccountServiceImp();
 	
 	private AccountServiceImp() {
+		this.map = new HashMap<String,AccountMemberBean>(); 
 	}
 	public static AccountServiceImp getInstance() {
 		return instance;
@@ -34,8 +37,10 @@ public class AccountServiceImp implements AccountService{
 		return result==0?"입금 오류":"입금후 잔액 : "+result;
 	}
 	@Override
-	public List<AccountMemberBean> list() {
-		return dao.list(null);
+	public List<?> list() {
+		List<AccountMemberBean> tempList = (List<AccountMemberBean>) dao.selectList(null);
+		
+		return tempList;
 	}
 	@Override
 	public String withdraw(AccountMemberBean withBean) {
@@ -46,8 +51,8 @@ public class AccountServiceImp implements AccountService{
 		return money==0?"출금 오류":"출금 후 잔액 : " + money;
 	}
 	@Override
-	public List<AccountMemberBean> findByName(String name) {
-		return dao.list(name);
+	public List<?> findBy(String name) {
+		return dao.selectList(name);
 	}
 	@Override
 	public int count() {
@@ -62,5 +67,11 @@ public class AccountServiceImp implements AccountService{
 	public String updateAccount(AccountMemberBean uptBean) {
 		// TODO Auto-generated method stub
 		return dao.updateAccount(uptBean)!=0?"변경 완료":"변경 실패";
+	}
+	@Override
+	public Map<?,?> map() {
+		this.map = new HashMap<String,AccountMemberBean>(); 
+		map = dao.selectMap();
+		return map;
 	}
 }

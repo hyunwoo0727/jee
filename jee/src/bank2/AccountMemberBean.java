@@ -1,4 +1,4 @@
-package bank2;
+	package bank2;
 
 
 /**
@@ -9,8 +9,8 @@ package bank2;
 */
 
 public class AccountMemberBean {
-	private String id,pw,name,regDate,ssn;
-	private int money,accountNo;
+	private String id,pw,name,regDate,ssn,birth,gender;
+	private int money,accountNo,age;
 	
 	public String getId() {
 		return id;
@@ -57,10 +57,29 @@ public class AccountMemberBean {
 	public void setAccountNo(int accountNo) {
 		this.accountNo = accountNo;
 	}
-	@Override
-	public String toString() {
-		return "계좌 [아이디 : " + id + ", 계좌번호 : " + accountNo + ", 이름 : " + name + ", 잔액 : "+money+" ]";
+	
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
 	}
 	
-	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	@Override
+	public String toString() {
+		return "계좌 [아이디 : " + id + ", 계좌번호 : " + accountNo + ", 이름 : " + name + ", 잔액 : "+money+" 원 "
+				+ "생년월일 : "+ birth+"]";
+	}
 }

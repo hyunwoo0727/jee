@@ -1,10 +1,19 @@
 package member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import bank2.AccountMemberBean;
+import bank2.AccountService;
+import bank2.AccountServiceImp;
 
 public class MemberServiceImpl implements MemberService{
-	MemberBean memberBean;
-	MemberDAO dao;
+	private Map<?,?> map;
+	private MemberDAO dao;
+	private MemberBean session;
+	AccountService accService = AccountServiceImp.getInstance();
+	
 	private static MemberServiceImpl instance = new MemberServiceImpl();
 	
 	private MemberServiceImpl() {
@@ -15,10 +24,7 @@ public class MemberServiceImpl implements MemberService{
 	public String regist(MemberBean mBean) {
 		return dao.insert(mBean)!=0?"성공":"실패";
 	}
-	@Override
-	public String find() {
-		return memberBean.toString();
-	}
+	
 	@Override
 	public String update(MemberBean mBean) {
 		return dao.updatePw(mBean)!=0? "변경 완료" : "ID/PW를 확인하세요" ;
@@ -27,15 +33,12 @@ public class MemberServiceImpl implements MemberService{
 	public String delete(String id) {
 		return dao.deleteMember(id)!=0?"삭제완료":"아이디를 확인하세요";
 	}
-	@Override
-	public boolean checkPassword(MemberBean mBean){
-		return memberBean.getPw().equals(mBean.getPw()) ? true : false;
-	}
+	
 	public static MemberServiceImpl getInstance() {
 		return instance;
 	}
 	@Override
-	public int getCount() {
+	public int count() {
 		return dao.count();
 	}
 
@@ -46,7 +49,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberBean> findByWord(String word) {
+	public List<MemberBean> findBy(String word) {
 		// TODO Auto-generated method stub
 		return dao.findByWord(word);
 	}
@@ -55,5 +58,25 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberBean> list() {
 		// TODO Auto-generated method stub
 		return dao.list();
+	}
+
+	@Override
+	public Map<?, ?> map() {
+		this.map = new HashMap<String,AccountMemberBean>(); 
+		map = dao.selectMap();
+		return map;
+	}
+	@Override
+	public String login(MemberBean mBean) {
+		String result = "로그인 실패";
+		if(dao.login(mBean)){	
+			result = "로그인 성공";
+			session = this.findById(mBean.getId());
+			accService.map();
+		}
+		return result;
+	}
+	public MemberBean getSession() {
+		return session;
 	}
 }

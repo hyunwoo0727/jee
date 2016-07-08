@@ -6,10 +6,14 @@ create table account(
 
 SELECT * FROM ACCOUNT;
 
+insert into account(accountno,id,money) values (1000007,'sungod',1000000);
+
+update account set money = 773000 where accountno=1000042;
+
 delete from account;
 drop table account2;
 
-
+SELECT * FROM ACCOUNT_MEMBER
 create sequence accSeq
 increment by 1
 start with 1000001

@@ -51,12 +51,12 @@ public class MemberController {
 				JOptionPane.showMessageDialog(null, resultBean==null?"아이디가 없습니다":resultBean);
 				break;
 			case "13":
-				JOptionPane.showMessageDialog(null, stuService.findByWord(JOptionPane.showInputDialog("이름검색")));
+				JOptionPane.showMessageDialog(null, stuService.findBy(JOptionPane.showInputDialog("이름검색")));
 				break;
 			case "14":
 				break;
 			case "15":
-				JOptionPane.showMessageDialog(null, stuService.getCount() + "명");
+//				JOptionPane.showMessageDialog(null, stuService.getCount() + "명");
 				break;
 			case "0":
 				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?")==0){

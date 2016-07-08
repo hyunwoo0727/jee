@@ -1,8 +1,7 @@
 package grade;
 
 import java.util.List;
-
-import javax.swing.JOptionPane;
+import java.util.Map;
 
 public class GradeServiceImpl implements GradeService{
 	GradeDAO dao = GradeDAO.getInstance();
@@ -32,9 +31,9 @@ public class GradeServiceImpl implements GradeService{
 	}
 
 	@Override
-	public int count(String examDate) {
+	public int count() {
 		// TODO Auto-generated method stub
-		return dao.count(examDate);
+		return dao.count("");
 	}
 	public static String getGrade(GradeBean bean){
 		String grade = "";
@@ -74,7 +73,7 @@ public class GradeServiceImpl implements GradeService{
 		return dao.findBySeq(seq);
 	}
 	@Override
-	public List<GradeBean> findById(String id) {
+	public List<GradeBean> findBy(String id) {
 		// TODO Auto-generated method stub
 		return dao.findById(id);
 	}
@@ -83,5 +82,9 @@ public class GradeServiceImpl implements GradeService{
 		// TODO Auto-generated method stub
 		return dao.update(sData.split(","))!=0 ? "수정 완료" : "수정 실패";
 	}
-	
+	@Override
+	public Map<?, ?> map() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.sun.accessibility.internal.resources.accessibility;
 
@@ -90,7 +92,7 @@ public class AccountDAO {
 		}
 		return result;
 	}
-	public List<AccountMemberBean> list(String word) {
+	public List<?> selectList(String word) {
 		List<AccountMemberBean> tempList = new ArrayList<AccountMemberBean>();
 		String sql="";
 		if(word==null){
@@ -112,7 +114,7 @@ public class AccountDAO {
 				amBean.setPw(rs.getString("PW"));
 				amBean.setName(rs.getString("NAME"));
 				amBean.setRegDate(rs.getString("REGDATE"));
-				amBean.setSsn(rs.getString("SSN"));
+				amBean.setBirth(rs.getString("SSN").substring(0, 6));
 				tempList.add(amBean);
 			}
 		} catch (Exception e) {
@@ -194,5 +196,28 @@ public class AccountDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	public Map<?, ?> selectMap() {
+		Map<String, AccountMemberBean> map = new HashMap<String,AccountMemberBean>();
+		String sql = "SELECT * FROM ACCOUNT_MEMBER";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				AccountMemberBean am = new AccountMemberBean();
+				am.setId(rs.getString("ID"));
+				am.setAccountNo(rs.getInt("ACCOUNTNO"));
+				am.setMoney(rs.getInt("MONEY"));
+				am.setPw(rs.getString("PW"));
+				am.setName(rs.getString("NAME"));
+				am.setRegDate(rs.getString("REGDATE"));
+				am.setSsn(rs.getString("SSN"));
+				map.put(String.valueOf(am.getAccountNo()), am);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return map;
 	}
 }

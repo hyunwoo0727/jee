@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import global.Constants;
 
@@ -198,5 +199,16 @@ public class MemberDAO {
 		}
 		return result;
 	} // count 
-	
+	public boolean login(MemberBean mBean) {
+		boolean loginOk = false;
+		MemberBean m = findByPK(mBean.getId());
+		if(m!=null && m.getPw().equals(mBean.getPw())){
+			loginOk = true;
+		}
+		return loginOk;
+	}
+	public Map<?, ?> selectMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

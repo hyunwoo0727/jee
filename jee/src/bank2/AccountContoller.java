@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import grade.GradeUI;
 import member.MemberService;
 import member.MemberServiceImpl;
-import sun.net.www.content.image.jpeg;
 
 /**
  * @date   : 2016. 6. 15.
@@ -21,10 +20,14 @@ public class AccountContoller {
 	public static void main(String[] args) {
 		MemberService memService = MemberServiceImpl.getInstance();
 		AccountService accService = AccountServiceImp.getInstance();
+		
 		while (true) {
 			switch (JOptionPane.showInputDialog("1.통장개설 2.입금 3.출금 4.수정(비번) 5.해지 6.조회(전체) \n "
 					+ "============================================================================================\n"
-					+ "7.조회(계좌번호) 8.조회(이름) 9.총 계좌수 0.종료")) {
+					+ "7.조회(계좌번호) 8.조회(이름) 9.총 계좌수 10.로긴 0.종료")) {
+			case "10":
+				memService.map();
+				break;
 			case "1":
 				String id = JOptionPane.showInputDialog("개설할 아이디");
 				if(memService.findById(id)==null){
@@ -70,13 +73,13 @@ public class AccountContoller {
 				JOptionPane.showMessageDialog(null, accService.closeAccount(JOptionPane.showInputDialog("계좌 번호 입력")));
 				break;
 			case "6":
-				GradeUI gui = new GradeUI();
+				new GradeUI();
 				break;
 			case "7":
 				JOptionPane.showMessageDialog(null, accService.findByAccountNo(JOptionPane.showInputDialog("계좌번호 입력")));
 				break;
 			case "8":
-				List<AccountMemberBean> tempList = accService.findByName(JOptionPane.showInputDialog("이름 입력"));
+				List<AccountMemberBean> tempList = (List<AccountMemberBean>) accService.findBy(JOptionPane.showInputDialog("이름 입력"));
 				JOptionPane.showMessageDialog(null, tempList.isEmpty()?"검색된 내용이 없습니다":tempList);
 				break;
 			case "9":
