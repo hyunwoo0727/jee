@@ -13,12 +13,7 @@ import java.util.Date;
  * @story  : 학생클라스
 */
 public class MemberBean {
-	private String id;
-	private String pw;
-	private String name;
-	private String gender;
-	private String regDate;
-	private String ssn;
+	private String id,pw,name,gender,regDate,ssn,proflieImg;
 	private int    age;
 	
 	public MemberBean() {
@@ -69,7 +64,13 @@ public class MemberBean {
 		}
 		this.ssn = ssn;
 	}
-
+	
+	public String getProfileImg() {
+		return proflieImg;
+	}
+	public void setProfileImg(String proflieImg) {
+		this.proflieImg = proflieImg;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
