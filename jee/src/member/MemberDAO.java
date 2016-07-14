@@ -90,6 +90,7 @@ public class MemberDAO {
 				mem.setId(rs.getString("ID"));
 				mem.setPw(rs.getString("PW"));
 				mem.setName(rs.getString("NAME"));
+				mem.setPw(rs.getString("PW"));
 				mem.setRegDate(rs.getString("REGDATE"));
 				mem.setSsn(rs.getString("SSN"));
 				return mem;

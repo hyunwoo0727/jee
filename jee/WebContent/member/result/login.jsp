@@ -1,13 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="member.MemberService"%>
+<%@ page import="member.MemberBean"%>
+<%@ page import="member.MemberServiceImpl" %>
 <!doctype html>
 <%
 	String ctp = application.getContextPath();
 	request.setCharacterEncoding("utf-8");
+	
+	MemberService service = MemberServiceImpl.getInstance();
+	MemberBean member = new MemberBean();
+	
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
-	if(id != null && id.equals("hong") && pw.equals("1324")){
-		response.sendRedirect(ctp+"/global/main.jsp");
+	if(id!=null||pw!=null){
+		member.setId(id);
+		member.setPw(pw);
+		String name = service.login(member);
+		if(name!=null){
+			session.setAttribute("name", name);
+			response.sendRedirect(ctp+"/global/main.jsp");
+		}
 	}
 	application.log("넘어온 ID : " + id);
 	application.log("넘어온 PW : " + pw);

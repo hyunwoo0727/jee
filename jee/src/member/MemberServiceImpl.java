@@ -21,8 +21,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public String regist(MemberBean mBean) {
-		return dao.insert(mBean)!=0?"성공":"실패";
+	public int regist(MemberBean mBean) {
+		System.out.println(mBean);
+		return dao.insert(mBean);
 	}
 	
 	@Override
@@ -68,10 +69,13 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public String login(MemberBean mBean) {
-		String result = "로그인 실패";
+		String result = null;
+		if(mBean.getId()==null || mBean.getPw()==null){
+			return null;
+		}
 		if(dao.login(mBean)){	
-			result = "로그인 성공";
 			session = this.findById(mBean.getId());
+			result = session.getName();
 			accService.map();
 		}
 		return result;

@@ -9,11 +9,10 @@ package test;
 
 public class StaticInit {
 	public static void main(String[] args) {
-		StaticInitClass a1 = new StaticInitClass();
-		System.out.println("----------");
-		StaticInitClass a2 = new StaticInitClass();
-		System.out.println("----------");
-		StaticInitClass a3 = new StaticInitClass();
-		System.out.println("----------");
+		String a = "";
+		String b = null;
+		
+		System.out.println(a.equals(""));
+		System.out.println(b==null);
 	}
 }

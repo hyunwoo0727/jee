@@ -1,14 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="member.MemberServiceImpl"%>
+<%@ page import="member.MemberService"%>
+<%@ page import="member.MemberBean"%>
+
 <%
 	String ctp = application.getContextPath();
 	request.setCharacterEncoding("utf-8");
+	MemberService mService = MemberServiceImpl.getInstance();
+	String name = request.getParameter("name");
+	String pw = request.getParameter("pw");
+	String id = request.getParameter("id");
+	String ssn = request.getParameter("ssn");
+	MemberBean member = new MemberBean();
+	if(id==""||pw==""||name==""||ssn==""){
+		response.sendRedirect(ctp+"/member/result/regist_fail.jsp");
+	}
+	member.setRegDate();
+	member.setId(id);
+	member.setPw(pw);
+	member.setName(name);
+	member.setSsn(ssn);
+	System.out.println("?? : " + member);
+	 
+	int result = mService.regist(member);
+	if(result==0){
+		response.sendRedirect(ctp+"/member/result/regist_fail.jsp");
+	} 
 %> 
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>회원가입</title>
+	<title>회원 가입 완료</title>
 	<link rel="stylesheet" href="<%=ctp%>/css/member.css" />
 	<style type="text/css">
 	div.joinDiv{
@@ -23,15 +47,15 @@
 	<!-- <object width="100%" height="500px" data="../../global/school_info.html"></object> -->
 	<div class="box">
 		
-			<span class="meta">이름</span> <%=request.getParameter("name") %> <br/>
+			<span class="meta">이름</span><%=name %> <br/>
 			<hr style="margin: 0;">
-			<span class="meta">ID</span> <%=request.getParameter("id") %> <br/>
+			<span class="meta">ID</span> <%=id %> <br/>
 			<hr style="margin: 0;">
-			<span class="meta">비밀번호</span> <%=request.getParameter("pw") %> <br/>
+			<span class="meta">비밀번호</span> <%=pw %> <br/>
 			<hr style="margin: 0;">
-			<span class="meta">SSN</span> <%=request.getParameter("ssn") %> <br/>
+			<span class="meta">SSN</span> <%=ssn %> <br/>
 			<hr style="margin: 0;">
-			<span class="meta">전공</span> <%=request.getParameter("major") %> <br/>
+			<span class="meta">전공</span> <%=request.getParameter("major")%> <br/>
 			<hr style="margin: 0;">
 			<span class="meta">수강과목</span> 
 			<%

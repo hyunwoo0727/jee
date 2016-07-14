@@ -13,10 +13,9 @@ import global.CommonService;
  * @story  : 
 */
 public interface MemberService extends CommonService{
-	public String regist(MemberBean mBean);
+	public int regist(MemberBean mBean);
 	public String update(MemberBean mBean);
 	public String delete(String id);
 	public MemberBean findById(String id);
 	public String login(MemberBean mBean);
-
 }

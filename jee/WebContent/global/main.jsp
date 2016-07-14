@@ -80,9 +80,9 @@
 				<li><a href="#">학교소개</a></li>
 				</ul>
 			</div>
-
+			
 			<div id="section">
-				<h2>회원관리</h2>
+				<h2>회원관리 <%=session.getAttribute("name")+" 님 환영합니다" %></h2>
 				<p></p>
 				<p></p>
 			</div>
