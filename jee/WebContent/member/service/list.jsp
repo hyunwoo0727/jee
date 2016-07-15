@@ -1,8 +1,12 @@
+<%@page import="member.MemberBean"%>
+<%@page import="member.MemberServiceImpl"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String ctp = application.getContextPath();
-	request.setCharacterEncoding("utf-8");
+	
+	ArrayList<MemberBean> list = MemberServiceImpl.getInstance().list();
 %> 
 <!doctype html>
 <html lang="en">
@@ -38,17 +42,18 @@
 				<th>REGDATE</th>
 				<th>BIRTH</th>
 			</tr>
+			<%
+				int i=0;
+				for(i=0;i<list.size();i++){
+					
+				}
+			
+			%>
 			<tr>
 				<td>hong</td>
 				<td><a href="detail.jsp">홍길동</a></td>
 				<td>2016-07-11</td>
 				<td>870727-1</td>
-			</tr>
-			<tr>
-				<td>lee</td>
-				<td><a href="detail.jsp"></detail>이순신</a></td>
-				<td>2016-07-112</td>
-				<td>890625-1</td>
 			</tr>
 		</table>
 

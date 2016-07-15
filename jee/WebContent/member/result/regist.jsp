@@ -6,7 +6,6 @@
 
 <%
 	String ctp = application.getContextPath();
-	request.setCharacterEncoding("utf-8");
 	MemberService mService = MemberServiceImpl.getInstance();
 	String name = request.getParameter("name");
 	String pw = request.getParameter("pw");

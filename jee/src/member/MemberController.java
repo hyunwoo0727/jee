@@ -16,6 +16,7 @@ public class MemberController {
 		// ssn 아이디 비번 이름 
 		MemberService stuService = MemberServiceImpl.getInstance();
 		MemberBean memberBean = new MemberBean();
+		String[] spec = null;
 		while (true) {
 			switch (JOptionPane.showInputDialog(""
 					+ "--- 회원이 보는 화면 ---\n"
@@ -23,7 +24,7 @@ public class MemberController {
 					+ "--- 관리자 화면 ---\n"
 					+ "11회원목록 12검색(ID) 13검색(이름) 14검색(성별) 15회원수 ")) {
 			case "1":
-				String[] spec = JOptionPane.showInputDialog("이름,아이디,비밀번호,주민등록번호(ex:870727-1)").split(",");
+				spec = JOptionPane.showInputDialog("이름,아이디,비밀번호,주민등록번호(ex:870727-1)").split(",");
 				memberBean = new MemberBean();
 				memberBean.setRegDate();
 				memberBean.setName(spec[0]);
@@ -33,10 +34,15 @@ public class MemberController {
 				JOptionPane.showMessageDialog(null,stuService.regist(memberBean)); 
 				break;
 			case "2":
-				MemberBean m2 = new MemberBean();
-				JOptionPane.showMessageDialog(null, stuService.login(m2));
+				MemberBean loginBean = new MemberBean();
+				spec = JOptionPane.showInputDialog("아이디,비밀번호").split(",");
+				loginBean.setId(spec[0]);
+				loginBean.setPw(spec[1]);
+				JOptionPane.showMessageDialog(null, stuService.login(loginBean));
 				break;
 			case "3":
+				MemberBean session = stuService.getSession();
+				JOptionPane.showMessageDialog(null, session==null?"로그인해주셈":session);
 				break;
 			case "4":
 				memberBean.setPw(JOptionPane.showInputDialog("변경할 비밀번호"));
@@ -58,7 +64,7 @@ public class MemberController {
 			case "14":
 				break;
 			case "15":
-//				JOptionPane.showMessageDialog(null, stuService.getCount() + "명");
+				JOptionPane.showMessageDialog(null, stuService.count() + "명");
 				break;
 			case "0":
 				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?")==0){

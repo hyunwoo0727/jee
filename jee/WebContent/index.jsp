@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%
 	String ctp = application.getContextPath();
-	request.setCharacterEncoding("utf-8");
 %>
 <!doctype html>
 <html lang="en">

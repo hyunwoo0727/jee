@@ -6,8 +6,6 @@
 <!doctype html>
 <%
 	String ctp = application.getContextPath();
-	request.setCharacterEncoding("utf-8");
-	
 	MemberService service = MemberServiceImpl.getInstance();
 	MemberBean member = new MemberBean();
 	
@@ -22,6 +20,7 @@
 			response.sendRedirect(ctp+"/global/main.jsp");
 		}
 	}
+	session.setAttribute("id", id);
 	application.log("넘어온 ID : " + id);
 	application.log("넘어온 PW : " + pw);
 %>
@@ -34,7 +33,7 @@
 <body>
 
 	<div class="box" style="margin-top: 10%;">
-		
+		<%=request.getParameter("name")%>
 		<h1>로그인 실패!!!!</h1> 
 		<br />
 		<a href="<%=ctp%>/member/service/login.jsp">다시 로그인</a>

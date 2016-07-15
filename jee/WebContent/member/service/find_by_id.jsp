@@ -2,13 +2,12 @@
     pageEncoding="UTF-8"%>
 <%
 	String ctp = application.getContextPath();
-	request.setCharacterEncoding("utf-8");
 %> 
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Insert title here</title>
+	<title>ID 검색 페이지</title>
 	<link rel="stylesheet" href="<%=ctp%>/css/member.css" />
 	<style>
 	body {
@@ -26,9 +25,12 @@
 <body>
 	<div class="box">
 		<embed width="100%" height="210px" src="image.jsp">
-		<h1>내 정보 보기 페이지</h1>
-		<br /> <img src="<%=ctp%>/img/hhh.jpg" alt="W3Schools.com" width="104"
-			height="142"><br />
+		<h1>아이디 검색</h1>
+		<br /> 
+		<form action="<%=ctp%>/member/result/find_by_id.jsp" method="post">
+			검색할 아이디 : <input type="text" name="id" /> <br />
+			<input class="btn" type="submit" value="검색" />
+		</form>
 	
 	<a href="<%=ctp%>/member/member_controller.jsp"><img src="<%=ctp%>/img/member.gif" alt="" width="50" height="50"/></a>
 	<a href="<%=ctp%>/global/main.jsp"><img src="<%=ctp%>/img/home.png" alt="home" width="50" height="50"/></a>

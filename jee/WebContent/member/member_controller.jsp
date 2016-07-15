@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>   <!-- 줄 -->
 <%
 	String ctp = application.getContextPath();
-	request.setCharacterEncoding("utf-8");
 %> 
 <!doctype html>
 <html lang="en">
@@ -22,9 +21,9 @@
 		<div style="width: 300px; margin: 0 auto;text-align: left;">
 		<ol>
 			<li><a href="service/list.jsp">전체보기</a></li>
+			<li><a href="service/detail.jsp">내 정보보기</a></li>
 			<li><a href="service/update.jsp">내정보수정</a></li>
 			<li><a href="service/delete.jsp">탈퇴</a></li>
-
 			<li><a href="service/find_by_id.jsp">검색(ID)</a></li>
 			<li><a href="service/find_by.jsp">검색(이름)</a></li>
 			<li><a href="service/count.jsp">회원수</a></li>

@@ -4,13 +4,20 @@
     pageEncoding="UTF-8"%>
 <%
 	String ctp = application.getContextPath();
-	MemberBean member = MemberServiceImpl.getInstance().getSession();
+	String id = request.getParameter("id");
+	if(id==""){
+		response.sendRedirect(ctp+"/result/find_fail.jsp");
+	}
+	MemberBean member = MemberServiceImpl.getInstance().findById(id);
+	if(member==null){
+		response.sendRedirect(ctp+"/result/find_fail.jsp");
+	}
 %> 
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Insert title here</title>
+	<title>아이디 검색 결과</title>
 	<link rel="stylesheet" href="<%=ctp%>/css/member.css" />
 	<style type="text/css">
 	#member_detail{border: 3px solid black; width: 90%;height: 90%; margin: 0 auto;border-collapse: collapse;}
@@ -23,7 +30,7 @@
 <body>
 	<!--  id birth name regdate gender proflieImg -->
 	<div class="box" style="width: 80%;">
-		<h1>회원 정보</h1>
+		<h1>검색된 회원 정보</h1>
 		<table id="member_detail">
 			<tr>
 				<td rowspan="3" style="width: 30%;"><img src="<%=ctp%>/img/hhh.jpg" alt="wwwe.com" width="98%" height="98%" /></td>

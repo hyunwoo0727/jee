@@ -1,8 +1,8 @@
+<%@page import="member.MemberServiceImpl"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String ctp = application.getContextPath();
-	request.setCharacterEncoding("utf-8");
 %>  
 <!doctype html>
 <html lang="en">
@@ -70,6 +70,7 @@
 			
 			<div id="header">
 				<h1>학생 관리[Student Management System]</h1>
+				<%=MemberServiceImpl.getInstance().getSession() %>
 			</div>
 
 			<div id="nav">
