@@ -18,7 +18,10 @@
 			<span class="meta">이름</span> <input type="text" name="name" /> <br/>
 			<span class="meta">ID</span> <input type="text" name="id" /> <br/>
 			<span class="meta">비밀번호</span> <input type="text" name="pw"/> <br/>
-			<span class="meta">SSN</span> <input type="text" name="ssn" /> <br/> <br />
+			<span class="meta">EMAIL</span> <input type="text" name="email" /> <br/>
+			<span class="meta">SSN</span> <input type="text" name="ssn" /> <br/>
+			<span class="meta">PROFILE IMAGE</span> <input type="text" name="profile" /> <br/> <br />
+			
 			<span class="meta">전공</span> 
 			<input type="radio" name="major" value="computer" checked /> 컴공학부
 			<input type="radio" name="major" value="mgmt" /> 경영학부

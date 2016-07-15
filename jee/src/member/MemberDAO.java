@@ -1,14 +1,9 @@
 package member;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import global.Constants;
@@ -36,7 +31,7 @@ public class MemberDAO {
 	}
 	public int insert(MemberBean mBean){
 		int result = 0;
-		String sql = "INSERT INTO MEMBER(ID,PW,NAME,REGDATE,SSN) VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO MEMBER(ID,PW,NAME,REGDATE,SSN,EMAIL,PROFILE_IMG) VALUES(?,?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mBean.getId());
@@ -44,6 +39,8 @@ public class MemberDAO {
 			pstmt.setString(3, mBean.getName());
 			pstmt.setString(4, mBean.getRegDate());
 			pstmt.setString(5, mBean.getSsn());
+			pstmt.setString(6, mBean.getEmail());
+			pstmt.setString(7, mBean.getProfileImg());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -53,11 +50,12 @@ public class MemberDAO {
 	}
 	public int updatePw(MemberBean mBean){
 		int result = 0;
-		String sql = "UPDATE MEMBER SET PW=? WHERE ID=?";
+		String sql = "UPDATE MEMBER SET PW=?,EMAIL=? WHERE ID=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mBean.getPw());
-			pstmt.setString(2, mBean.getId());
+			pstmt.setString(2, mBean.getEmail());
+			pstmt.setString(3, mBean.getId());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -92,11 +90,14 @@ public class MemberDAO {
 				findBean.setName(rs.getString("NAME"));
 				findBean.setRegDate(rs.getString("REGDATE"));
 				findBean.setSsn(rs.getString("SSN"));
+				findBean.setEmail(rs.getString("EMAIL"));
+				findBean.setProfileImg(rs.getString("PROFILE_IMG"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(findBean);
 		return findBean;
 	} // id
 	public Map<?, ?> selectMap() {
@@ -112,6 +113,8 @@ public class MemberDAO {
 				tempBean.setName(rs.getString("NAME"));
 				tempBean.setRegDate(rs.getString("REGDATE"));
 				tempBean.setSsn(rs.getString("SSN"));
+				tempBean.setEmail(rs.getString("EMAIL"));
+				tempBean.setProfileImg(rs.getString("PROFILE_IMG"));
 				memberMap.put(tempBean.getId(), tempBean);
 			}
 			

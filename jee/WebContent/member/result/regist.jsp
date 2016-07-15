@@ -11,6 +11,8 @@
 	String pw = request.getParameter("pw");
 	String id = request.getParameter("id");
 	String ssn = request.getParameter("ssn");
+	String email = request.getParameter("email");
+	String profile = request.getParameter("profile");
 	MemberBean member = new MemberBean();
 	if(id==""||pw==""||name==""||ssn==""){
 		response.sendRedirect(ctp+"/member/result/regist_fail.jsp");
@@ -20,6 +22,8 @@
 	member.setPw(pw);
 	member.setName(name);
 	member.setSsn(ssn);
+	member.setEmail(email);
+	member.setProfileImg(profile);
 	System.out.println("?? : " + member);
 	 
 	int result = mService.regist(member);

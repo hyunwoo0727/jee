@@ -70,7 +70,6 @@
 			
 			<div id="header">
 				<h1>학생 관리[Student Management System]</h1>
-				<%=MemberServiceImpl.getInstance().getSession() %>
 			</div>
 
 			<div id="nav">

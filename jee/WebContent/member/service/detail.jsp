@@ -4,7 +4,13 @@
     pageEncoding="UTF-8"%>
 <%
 	String ctp = application.getContextPath();
-	MemberBean member = MemberServiceImpl.getInstance().getSession();
+	String id = request.getParameter("id");
+	MemberBean member = null;
+	if(id==null || id==""){
+		 member = MemberServiceImpl.getInstance().getSession();
+	}else{
+		 member = MemberServiceImpl.getInstance().findById(id);
+	}
 %> 
 <!doctype html>
 <html lang="en">
@@ -26,26 +32,31 @@
 		<h1>회원 정보</h1>
 		<table id="member_detail">
 			<tr>
-				<td rowspan="3" style="width: 30%;"><img src="<%=ctp%>/img/hhh.jpg" alt="wwwe.com" width="98%" height="98%" /></td>
+				<td rowspan="4" style="width: 30%;"><img src="<%=ctp%>/img/member/<%=member.getProfileImg()%>" alt="wwwe.com" width="300" height="300" /></td>
 				<td class="fontBold bg_color_yellow" style="width: 20%;">ID</td>
-				<td style="width: 40%;"><%=member.getId() %></td>
+				<td style="width: 40%;"><%=member.getId()%></td>
 			</tr>
 			<tr>
 				<td class="fontBold bg_color_yellow">NAME</td>
-				<td><%=member.getName() %></td>			
+				<td><%=member.getName()%></td>			
+			</tr>
+			<tr>
+				<td class="fontBold bg_color_yellow">이메일</td>
+				<td><%=member.getEmail()%></td>
 			</tr>
 			<tr>
 				<td class="fontBold bg_color_yellow">성별</td>
-				<td ><%=member.getGender() %></td>
+				<td ><%=member.getGender()%></td>
 			</tr>
 			<tr>
 				<td class="fontBold bg_color_yellow">생년월일</td>
-				<td colspan="2"><%=member.getSsn()%></td>
+				<td colspan="2"><%=member.getBirth()%></td>
 			</tr>
 			<tr>
 				<td class="fontBold bg_color_yellow">등록일</td>
 				<td colspan="2"><%=member.getRegDate()%></td>
 			</tr>
+			
 		</table>		
 	<a href="<%=ctp%>/member/member_controller.jsp"><img src="<%=ctp%>/img/member.gif" alt="" width="50" height="50"/></a>
 	<a href="<%=ctp%>/global/main.jsp"><img src="<%=ctp%>/img/home.png" alt="home" width="50" height="50"/></a>

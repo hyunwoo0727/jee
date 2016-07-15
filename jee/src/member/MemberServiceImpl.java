@@ -31,9 +31,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public int update(MemberBean mBean) {
-		System.out.println(mBean);
-		this.map();
-		return dao.updatePw(mBean);
+		int result= dao.updatePw(mBean);
+		if(result==1){
+			this.map();
+			this.session = dao.findByPK(mBean.getId());
+		}
+		return result;
 	}
 	@Override
 	public int delete(String id) {

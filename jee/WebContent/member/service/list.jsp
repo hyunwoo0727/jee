@@ -45,16 +45,19 @@
 			<%
 				int i=0;
 				for(i=0;i<list.size();i++){
-					
-				}
-			
 			%>
-			<tr>
-				<td>hong</td>
-				<td><a href="detail.jsp">홍길동</a></td>
-				<td>2016-07-11</td>
-				<td>870727-1</td>
-			</tr>
+				<tr>
+			<%
+					MemberBean member = list.get(i);
+			%>
+					<td><%=member.getId()%></td>
+					<td><a href="<%=ctp%>/member/service/detail.jsp?id=<%=member.getId()%>"><%=member.getName()%></a></td>
+					<td><%=member.getRegDate()%></td>
+					<td><%=member.getSsn()%></td>
+					</tr>
+			<%
+				}
+			%>
 		</table>
 
 		<a href="<%=ctp%>/member/member_controller.jsp"><img src="<%=ctp%>/img/member.gif" alt="" width="50" height="50"/></a>

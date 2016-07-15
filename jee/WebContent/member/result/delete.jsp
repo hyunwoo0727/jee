@@ -5,17 +5,9 @@
     pageEncoding="UTF-8"%>
 <%
 	String ctp = application.getContextPath();
-	MemberService service = MemberServiceImpl.getInstance();
-	String id = String.valueOf(session.getAttribute("id"));
-	String pw = request.getParameter("pw");
-	application.log(id);
-	MemberBean member = new MemberBean();
-	member.setId(id);
-	member.setPw(pw);
-	if(id!="" && pw!=""){
-		if(service.update(member)==1){
-			response.sendRedirect(ctp+"/member/member_controller.jsp");
-		}
+	int result = MemberServiceImpl.getInstance().delete(String.valueOf(session.getAttribute("id")));
+	if(result==1){
+		response.sendRedirect(ctp+"/index.jsp");
 	}
 	
 %>
@@ -29,9 +21,9 @@
 <body>
 	<div class="box" style="margin-top: 10%;">
 		
-		<h1>수정 실패!!!!</h1> 
+		<h1>검색 결과가 없습니다</h1> 
 		<br />
-		<a href="<%=ctp%>/member/service/update.jsp">다시 시도</a>
+		<a href="<%=ctp%>/member/service/find_by_id.jsp">다시 시도</a>
 		<br />
 		
 		<a href="<%=ctp%>/index.jsp"><img src="<%=ctp%>/img/home.png" alt="home" width="50" height="50"/></a>
