@@ -3,7 +3,7 @@
 	String ctp = application.getContextPath();
 %>
 <div class="box">
-		<h1>성적관리</h1> <br />
+		<h1>성적 관리</h1> <br />
 		<ol>
 			<li><a href="service/regist.jsp">등록</a></li>
 			<li><a href="service/update.jsp">수정</a></li>
