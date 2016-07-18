@@ -7,12 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import bank2.AccountMemberBean;
 import bank2.AccountService;
 import bank2.AccountServiceImp;
 
 public class MemberServiceImpl implements MemberService{
-	private Map<?,?> map;
+	private Map<String,MemberBean> map;
 	private MemberDAO dao;
 	private MemberBean session;
 	AccountService accService = AccountServiceImp.getInstance();
@@ -26,6 +25,26 @@ public class MemberServiceImpl implements MemberService{
 		return instance;
 	}
 	@Override
+	public String login(MemberBean mBean) {
+		String result = null;
+		if(mBean.getId()==null || mBean.getPw()==null){
+			return null;
+		}
+		if(this.checkLogin(mBean)){	
+			this.map();
+			session = (MemberBean) map.get(mBean.getId());
+			result = session.getName();
+			accService.map();
+		}
+		return result;
+	}
+	@Override
+	public Map<?, ?> map() {
+		this.map = new HashMap<String,MemberBean>(); 
+		map = dao.selectMap();
+		return map;
+	}
+	@Override
 	public int regist(MemberBean mBean) {
 		return dao.insert(mBean);
 	}
@@ -33,16 +52,20 @@ public class MemberServiceImpl implements MemberService{
 	public int update(MemberBean mBean) {
 		int result= dao.updatePw(mBean);
 		if(result==1){
-			this.map();
 			this.session = dao.findByPK(mBean.getId());
+			this.map.replace(session.getId(), session);
 		}
 		return result;
 	}
 	@Override
-	public int delete(String id) {
-		int result = dao.deleteMember(id);
-		if(result==1){
-			session = null;
+	public int delete(MemberBean mBean) {
+		int result = 0;
+		MemberBean temp = (MemberBean) map.get(mBean.getId());
+		if(temp.getPw().equals(mBean.getPw())){
+			result = dao.deleteMember(mBean.getId());
+			if(result==1){
+				session = null;
+			}
 		}
 		return result;
 	}
@@ -67,7 +90,6 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return findList;
 	}
-	
 	@Override
 	public ArrayList<MemberBean> list() {
 		ArrayList<MemberBean> allList = new ArrayList<MemberBean>();
@@ -79,32 +101,8 @@ public class MemberServiceImpl implements MemberService{
 		
 		return allList;
 	}
-	@Override
-	public Map<?, ?> map() {
-		this.map = new HashMap<String,AccountMemberBean>(); 
-		map = dao.selectMap();
-		return map;
-	}
-	@Override
-	public String login(MemberBean mBean) {
-		String result = null;
-		if(mBean.getId()==null || mBean.getPw()==null){
-			return null;
-		}
-		if(this.checkLogin(mBean)){	
-			this.map();
-			session = (MemberBean) map.get(mBean.getId());
-			result = session.getName();
-			accService.map();
-		}
-		return result;
-	}
 	public MemberBean getSession() {
 		return session;
-	}
-	
-	public void setSession(MemberBean session) {
-		this.session = session;
 	}
 	public boolean checkLogin(MemberBean mBean) {
 		boolean loginOk = false;
@@ -113,5 +111,11 @@ public class MemberServiceImpl implements MemberService{
 			loginOk = true;
 		}
 		return loginOk;
+	}
+	@Override
+	public void logOut(MemberBean mBean) {
+		if(mBean.getId().equals(session.getId()) && mBean.getPw().equals(session.getPw())){
+			this.session = null;
+		}  
 	}
 }

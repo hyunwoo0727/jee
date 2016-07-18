@@ -16,6 +16,7 @@
 	MemberBean member = new MemberBean();
 	if(id==""||pw==""||name==""||ssn==""){
 		response.sendRedirect(ctp+"/member/result/regist_fail.jsp");
+		return;
 	}
 	member.setRegDate();
 	member.setId(id);
@@ -29,6 +30,7 @@
 	int result = mService.regist(member);
 	if(result==0){
 		response.sendRedirect(ctp+"/member/result/regist_fail.jsp");
+		return;
 	} 
 %> 
 <!doctype html>

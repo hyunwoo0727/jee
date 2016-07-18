@@ -18,6 +18,7 @@
 		if(name!=null){
 			session.setAttribute("name", name);
 			response.sendRedirect(ctp+"/global/main.jsp");
+			return;
 		}
 	}
 	session.setAttribute("id", id);

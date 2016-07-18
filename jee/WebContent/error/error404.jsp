@@ -20,7 +20,7 @@
 		<!-- content -->
 		<div id="content">
 			<ul class="nav">
-         	<li class="home"><a href="#">Home Page</a></li>
+         	<li class="home"><a href="<%=ctp%>/index.jsp">Home Page</a></li>
             <li class="site_map"><a href="#">Site Map</a></li>
             <li class="search"><a href="#">Website Search</a></li>
          </ul>

@@ -6,21 +6,18 @@
 <%
 	String ctp = application.getContextPath();
 	MemberService service = MemberServiceImpl.getInstance();
-	String id = String.valueOf(session.getAttribute("id"));
+	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
 	String email = request.getParameter("email");
-	application.log(id);
-	
 	MemberBean member = new MemberBean();
 	member.setId(id);
 	member.setPw(pw);
 	member.setEmail(email);
 	if(id!="" && pw!="" && email!=""){
 		if(service.update(member)==1){
-			response.sendRedirect(ctp+"/member/member_controller.jsp");
+			response.sendRedirect(ctp+"/member/service/detail.jsp");
 		}
 	}
-	
 %>
 <!doctype html>
 <html lang="en">

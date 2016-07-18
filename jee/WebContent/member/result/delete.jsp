@@ -5,11 +5,13 @@
     pageEncoding="UTF-8"%>
 <%
 	String ctp = application.getContextPath();
-	int result = MemberServiceImpl.getInstance().delete(String.valueOf(session.getAttribute("id")));
-	if(result==1){
+	MemberBean member = new MemberBean();
+	member.setId(request.getParameter("id"));
+	member.setPw(request.getParameter("pw"));
+	if(MemberServiceImpl.getInstance().delete(member)==1){
 		response.sendRedirect(ctp+"/index.jsp");
+		return;
 	}
-	
 %>
 <!doctype html>
 <html lang="en">
@@ -21,9 +23,9 @@
 <body>
 	<div class="box" style="margin-top: 10%;">
 		
-		<h1>검색 결과가 없습니다</h1> 
+		<h1>비밀번호가 다릅니다</h1> 
 		<br />
-		<a href="<%=ctp%>/member/service/find_by_id.jsp">다시 시도</a>
+		<a href="<%=ctp%>/member/service/delete.jsp">다시 시도</a>
 		<br />
 		
 		<a href="<%=ctp%>/index.jsp"><img src="<%=ctp%>/img/home.png" alt="home" width="50" height="50"/></a>

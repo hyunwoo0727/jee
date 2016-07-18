@@ -97,10 +97,9 @@ public class MemberDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(findBean);
 		return findBean;
 	} // id
-	public Map<?, ?> selectMap() {
+	public Map<String, MemberBean> selectMap() {
 		Map<String, MemberBean> memberMap = new HashMap<String,MemberBean>();
 		String sql = "SELECT * FROM MEMBER";
 		try {

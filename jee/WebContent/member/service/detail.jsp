@@ -1,3 +1,4 @@
+<%@page import="member.MemberService"%>
 <%@page import="member.MemberServiceImpl"%>
 <%@page import="member.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,12 +6,9 @@
 <%
 	String ctp = application.getContextPath();
 	String id = request.getParameter("id");
+	MemberService service = MemberServiceImpl.getInstance();
 	MemberBean member = null;
-	if(id==null || id==""){
-		 member = MemberServiceImpl.getInstance().getSession();
-	}else{
-		 member = MemberServiceImpl.getInstance().findById(id);
-	}
+	member = id==null || id=="" ? service.getSession() : service.findById(id);
 %> 
 <!doctype html>
 <html lang="en">

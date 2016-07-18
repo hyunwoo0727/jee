@@ -62,14 +62,12 @@
 					<td class="fontBold bg_color_yellow">등록일</td>
 					<td colspan="2"><%=member.getRegDate()%></td>
 				</tr>
-				
 			</table>	
+			<input type="hidden" name="id" value="<%=member.getId()%>" />
 			<input class="btn" type="submit" value="수정" />
 		</form>	
 	<a href="<%=ctp%>/member/member_controller.jsp"><img src="<%=ctp%>/img/member.gif" alt="" width="50" height="50"/></a>
 	<a href="<%=ctp%>/global/main.jsp"><img src="<%=ctp%>/img/home.png" alt="home" width="50" height="50"/></a>
-		
-	
 	</div>
 </body>
 </html>

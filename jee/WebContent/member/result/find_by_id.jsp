@@ -6,11 +6,13 @@
 	String ctp = application.getContextPath();
 	String id = request.getParameter("id");
 	if(id==""){
-		response.sendRedirect(ctp+"/result/find_fail.jsp");
+		response.sendRedirect(ctp+"/member/result/find_fail.jsp");
+		return;
 	}
 	MemberBean member = MemberServiceImpl.getInstance().findById(id);
 	if(member==null){
-		response.sendRedirect(ctp+"/result/find_fail.jsp");
+		response.sendRedirect(ctp+"/member/result/find_fail.jsp");
+		return;
 	}
 %> 
 <!doctype html>
@@ -33,7 +35,7 @@
 		<h1>검색된 회원 정보</h1>
 		<table id="member_detail">
 			<tr>
-				<td rowspan="3" style="width: 30%;"><img src="<%=ctp%>/img/hhh.jpg" alt="wwwe.com" width="98%" height="98%" /></td>
+				<td rowspan="3" style="width: 30%;"><img src="<%=ctp%>/img/member/<%=member.getId()%>.jpg" alt="wwwe.com" width="98%" height="98%" /></td>
 				<td class="fontBold bg_color_yellow" style="width: 20%;">ID</td>
 				<td style="width: 40%;"><%=member.getId() %></td>
 			</tr>

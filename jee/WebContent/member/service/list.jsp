@@ -53,7 +53,7 @@
 					<td><%=member.getId()%></td>
 					<td><a href="<%=ctp%>/member/service/detail.jsp?id=<%=member.getId()%>"><%=member.getName()%></a></td>
 					<td><%=member.getRegDate()%></td>
-					<td><%=member.getSsn()%></td>
+					<td><%=member.getBirth()%></td>
 					</tr>
 			<%
 				}

@@ -1,3 +1,4 @@
+<%@page import="member.MemberServiceImpl"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -15,6 +16,8 @@
 	<embed src="<%=ctp%>/img/cat.gif" type="" /> <br />
 	탈퇴 페이지 <br/>
 	<form action="<%=ctp%>/member/result/delete.jsp">
+		비밀번호 확인 : <input type="password" name="pw" />
+		<input type="hidden" name="id" value="<%=MemberServiceImpl.getInstance().getSession().getId()%>" />
 		<input class="btn" type="submit" value="탈퇴" />
 	
 	</form>

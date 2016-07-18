@@ -49,7 +49,7 @@ public class MemberController {
 				JOptionPane.showMessageDialog(null, stuService.update(memberBean));
 				break;
 			case "5":
-				JOptionPane.showMessageDialog(null, stuService.delete(JOptionPane.showInputDialog("탈퇴할 아이디")));
+//				JOptionPane.showMessageDialog(null, stuService.delete(JOptionPane.showInputDialog("탈퇴할 아이디")));
 				break;
 			case "11":
 				JOptionPane.showMessageDialog(null, stuService.list());

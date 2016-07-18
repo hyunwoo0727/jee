@@ -29,9 +29,8 @@
 			<li><a href="service/count.jsp">회원수</a></li>
 		</ol>
 		</div>
-		
 		<a href="<%=ctp%>/index.jsp"><img src="<%=ctp%>/img/home.png" alt="home" width="50" height="50"/></a>
-		<a href="<%=ctp%>/member/result/logout.jsp"><img src="<%=ctp%>/img/logout.png" alt="home" width="50" height="50"/></a>
+		<a href="<%=ctp%>/member/service/logout.jsp"><img src="<%=ctp%>/img/logout.png" alt="home" width="50" height="50"/></a>
 	</div>	
 </body>
 </html>

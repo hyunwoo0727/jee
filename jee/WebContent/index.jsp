@@ -76,9 +76,8 @@
 				<h2>서비스를 이용하시려면 회원가입을 해야 합니다</h2>
 				<a href="<%=ctp%>/member/service/regist.jsp">회원가입</a> <br />
 				<a href="<%=ctp%>/member/service/login.jsp">로그인</a>
-				<a href="<%=ctp%>/golbal/main.jsp">메인으로</a>
 			</div>
-
+			
 			<div id="footer">Copyright � W3Schools.com</div>
 		</div>
 	</div>
