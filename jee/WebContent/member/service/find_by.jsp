@@ -19,6 +19,10 @@
 	<div class="box">
 		검색 페이지 <br/>
 		<iframe src="image.jsp" class="ifrm"></iframe> <br />
+		
+		<form action="">
+			검색어 : <input type="text" name="word" /> <br />	
+		</form>
 		<a href="<%=ctp%>/member/member_controller.jsp"><img src="<%=ctp%>/img/member.gif" alt="" width="50" height="50"/></a>
 		<a href="<%=ctp%>/global/main.jsp"><img src="<%=ctp%>/img/home.png" alt="home" width="50" height="50"/></a>
 	</div>

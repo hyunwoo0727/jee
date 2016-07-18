@@ -3,15 +3,8 @@
 <%
 	String ctp = application.getContextPath();
 %> 
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>회원가입</title>
-	<link rel="stylesheet" href="<%=ctp%>/css/member.css" />
-	
-</head>
-<body>
+<jsp:include page="../../global/top.jsp" />
+<jsp:include page="../../global/header.jsp" />
 	<!-- <object width="100%" height="500px" data="<%=ctp%>/global/school_info.html"></object> -->
 	<div class="box" style="width: 700px;">
 		<form action="<%=ctp%>/member/result/regist.jsp" method="post">
@@ -39,5 +32,5 @@
 			<input class="btn" type="reset" value="취 소"/>
 		</form> 
 	</div>
-</body>
-</html>
+<jsp:include page="../../global/footer.jsp" />
+<jsp:include page="../../global/end.jsp" />

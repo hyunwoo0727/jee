@@ -12,25 +12,18 @@
 		 member = MemberServiceImpl.getInstance().findById(id);
 	}
 %> 
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>Insert title here</title>
+<jsp:include page="../../global/top.jsp" />
+<jsp:include page="../../global/header.jsp" />
 	<link rel="stylesheet" href="<%=ctp%>/css/member.css" />
 	<style type="text/css">	
-	#member_detail{border: 3px solid black; width: 90%;height: 90%; margin: 0 auto;border-collapse: collapse;}
+	#member_detail{border: 3px solid black; width: 90%;height: 70%; margin: 0 auto;border-collapse: collapse;}
 	#member_detail tr{border: 1px solid darkgray; height: 15%;}
 	#member_detail tr td{border: 1px solid darkgray; font-size: xx-large;}
 	.fontBold{font-weight: bold;}
 	.bg_color_yellow{background-color: #A9F5A9;}
 	</style>
-</head>
-<body>
-	<!--  id birth name regdate gender proflieImg -->
-	<div class="box" style="width: 80%;">
+	<div class="box">
 		<h1>회원 정보</h1>
-		
 		<form action="<%=ctp%>/member/result/update.jsp" method="post">
 			<table id="member_detail">
 				<tr>
@@ -66,8 +59,8 @@
 			<input type="hidden" name="id" value="<%=member.getId()%>" />
 			<input class="btn" type="submit" value="수정" />
 		</form>	
-	<a href="<%=ctp%>/member/member_controller.jsp"><img src="<%=ctp%>/img/member.gif" alt="" width="50" height="50"/></a>
+	<a href="<%=ctp%>/member/main.jsp"><img src="<%=ctp%>/img/member.gif" alt="" width="50" height="50"/></a>
 	<a href="<%=ctp%>/global/main.jsp"><img src="<%=ctp%>/img/home.png" alt="home" width="50" height="50"/></a>
 	</div>
-</body>
-</html>
+<jsp:include page="../../global/footer.jsp" />
+<jsp:include page="../../global/end.jsp" />

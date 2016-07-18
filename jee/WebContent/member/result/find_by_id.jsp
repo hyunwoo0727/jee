@@ -35,7 +35,7 @@
 		<h1>검색된 회원 정보</h1>
 		<table id="member_detail">
 			<tr>
-				<td rowspan="3" style="width: 30%;"><img src="<%=ctp%>/img/member/<%=member.getId()%>.jpg" alt="wwwe.com" width="98%" height="98%" /></td>
+				<td rowspan="3" style="width: 30%;"><img src="<%=ctp%>/img/member/<%=member.getProfileImg()%>" width="98%" height="98%" /></td>
 				<td class="fontBold bg_color_yellow" style="width: 20%;">ID</td>
 				<td style="width: 40%;"><%=member.getId() %></td>
 			</tr>
